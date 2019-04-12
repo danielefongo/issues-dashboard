@@ -1,4 +1,8 @@
 package com.bodfod.issuesdashboard.events
 
-class GithubProjectRepository {
+import org.springframework.data.repository.PagingAndSortingRepository
+
+interface GithubProjectRepository : PagingAndSortingRepository<GithubProject, Long> {
+
+    fun findByRepoName(repoName: String): GithubProject
 }
