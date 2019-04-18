@@ -28,6 +28,10 @@ class GithubClient {
         return this.restTemplate.getForEntity(EVENT_ISSUES_URL, Array<RepositoryEvent>::class.java, orgName, repoName)
     }
 
+    fun fetchEventsList(orgName: String, repoName: String): List<RepositoryEvent> {
+        return fetchEvents(orgName, repoName).body!!.toList()
+    }
+
     private class GithubAppTokenInterceptor internal constructor(private val token: String) : ClientHttpRequestInterceptor {
         @Throws(IOException::class)
         override fun intercept(request: HttpRequest, body: ByteArray, execution: ClientHttpRequestExecution): ClientHttpResponse {
